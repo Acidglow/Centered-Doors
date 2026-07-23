@@ -1,0 +1,8 @@
+{
+  "itemGroup.acidglowscentereddoors": "Centered Doors",
+  "item.acidglowscentereddoors.door_adjuster": "Door Adjuster",
+  "message.acidglowscentereddoors.mirrored": "Door mirrored",
+  "message.acidglowscentereddoors.position.front": "Door position: Front",
+  "message.acidglowscentereddoors.position.middle": "Door position: Middle",
+  "message.acidglowscentereddoors.position.back": "Door position: Back"
+}

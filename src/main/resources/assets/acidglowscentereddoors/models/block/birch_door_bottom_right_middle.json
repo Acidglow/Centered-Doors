@@ -1,0 +1,7 @@
+﻿{
+    "parent":  "acidglowscentereddoors:block/door_bottom_right_middle",
+    "textures":  {
+                     "bottom":  "minecraft:block/birch_door_bottom",
+                     "top":  "minecraft:block/birch_door_top"
+                 }
+}
