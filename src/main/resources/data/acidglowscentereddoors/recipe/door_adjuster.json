@@ -2,12 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "#": "minecraft:stick",
+    "S": "minecraft:stick",
     "I": "minecraft:iron_ingot"
   },
   "pattern": [
-    " I",
-    "# "
+    " I ",
+    "IS ",
+    "  S"
   ],
   "result": {
     "id": "acidglowscentereddoors:door_adjuster"

@@ -1,0 +1,8 @@
+{
+    "parent":  "acidglowscentereddoors:block/door_top_right_open_back_south",
+    "textures":  {
+                     "bottom":  "mcwdoors:block/birch_mystic_door_lower",
+                     "top":  "mcwdoors:block/birch_mystic_door_upper",
+                     "particle":  "mcwdoors:block/birch_mystic_door_lower"
+                 }
+}

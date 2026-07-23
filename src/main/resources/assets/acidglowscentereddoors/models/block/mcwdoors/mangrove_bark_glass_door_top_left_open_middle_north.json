@@ -1,0 +1,8 @@
+{
+    "parent":  "acidglowscentereddoors:block/door_top_left_open_middle_north",
+    "textures":  {
+                     "bottom":  "minecraft:block/mangrove_log",
+                     "top":  "minecraft:block/mangrove_log",
+                     "particle":  "minecraft:block/mangrove_log"
+                 }
+}

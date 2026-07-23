@@ -1,0 +1,7 @@
+﻿{
+    "parent":  "acidglowscentereddoors:block/door_top_left_open_middle_west",
+    "textures":  {
+                     "bottom":  "minecraft:block/jungle_door_bottom",
+                     "top":  "minecraft:block/jungle_door_top"
+                 }
+}

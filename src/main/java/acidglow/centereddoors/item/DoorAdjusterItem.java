@@ -21,7 +21,7 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
 public class DoorAdjusterItem extends Item {
-    private static final int UPDATE_FLAGS = Block.UPDATE_CLIENTS | Block.UPDATE_KNOWN_SHAPE;
+    private static final int UPDATE_FLAGS = Block.UPDATE_ALL;
 
     public DoorAdjusterItem(Properties properties) {
         super(properties);

@@ -1,0 +1,8 @@
+{
+    "parent":  "acidglowscentereddoors:block/door_bottom_right_open_middle_east",
+    "textures":  {
+                     "bottom":  "mcwdoors:block/western/jungle_western_door_lower",
+                     "top":  "mcwdoors:block/western/jungle_western_door_upper",
+                     "particle":  "mcwdoors:block/western/jungle_western_door_lower"
+                 }
+}

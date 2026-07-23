@@ -1,0 +1,8 @@
+{
+    "parent":  "acidglowscentereddoors:block/door_top_right_open_back_west",
+    "textures":  {
+                     "bottom":  "mcwdoors:block/bamboo_modern_door_lower",
+                     "top":  "mcwdoors:block/bamboo_modern_door_upper",
+                     "particle":  "mcwdoors:block/bamboo_modern_door_lower"
+                 }
+}

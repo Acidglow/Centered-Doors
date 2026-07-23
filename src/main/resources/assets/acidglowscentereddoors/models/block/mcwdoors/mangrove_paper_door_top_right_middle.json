@@ -1,0 +1,8 @@
+{
+    "parent":  "acidglowscentereddoors:block/door_top_right_middle",
+    "textures":  {
+                     "bottom":  "mcwdoors:block/mangrove_paper_door_lower",
+                     "top":  "mcwdoors:block/mangrove_paper_door_upper",
+                     "particle":  "mcwdoors:block/mangrove_paper_door_lower"
+                 }
+}

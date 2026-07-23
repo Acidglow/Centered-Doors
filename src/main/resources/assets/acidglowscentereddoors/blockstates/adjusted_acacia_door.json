@@ -17,16 +17,13 @@
                                                                                         "y":  90
                                                                                     },
                      "position=middle_back,facing=east,half=lower,hinge=left,open=true":  {
-                                                                                              "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_middle",
-                                                                                              "y":  90
+                                                                                              "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_middle_east"
                                                                                           },
                      "position=back,facing=east,half=lower,hinge=left,open=true":  {
-                                                                                       "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_back",
-                                                                                       "y":  90
+                                                                                       "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_back_east"
                                                                                    },
                      "position=middle_front,facing=east,half=lower,hinge=left,open=true":  {
-                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_middle",
-                                                                                               "y":  90
+                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_middle_east"
                                                                                            },
                      "position=front,facing=east,half=lower,hinge=right,open=false":  {
                                                                                           "model":  "minecraft:block/acacia_door_bottom_right"
@@ -45,16 +42,13 @@
                                                                                          "y":  270
                                                                                      },
                      "position=middle_back,facing=east,half=lower,hinge=right,open=true":  {
-                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_middle",
-                                                                                               "y":  270
+                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_middle_east"
                                                                                            },
                      "position=back,facing=east,half=lower,hinge=right,open=true":  {
-                                                                                        "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_back",
-                                                                                        "y":  270
+                                                                                        "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_back_east"
                                                                                     },
                      "position=middle_front,facing=east,half=lower,hinge=right,open=true":  {
-                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_middle",
-                                                                                                "y":  270
+                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_middle_east"
                                                                                             },
                      "position=front,facing=east,half=upper,hinge=left,open=false":  {
                                                                                          "model":  "minecraft:block/acacia_door_top_left"
@@ -73,16 +67,13 @@
                                                                                         "y":  90
                                                                                     },
                      "position=middle_back,facing=east,half=upper,hinge=left,open=true":  {
-                                                                                              "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_middle",
-                                                                                              "y":  90
+                                                                                              "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_middle_east"
                                                                                           },
                      "position=back,facing=east,half=upper,hinge=left,open=true":  {
-                                                                                       "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_back",
-                                                                                       "y":  90
+                                                                                       "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_back_east"
                                                                                    },
                      "position=middle_front,facing=east,half=upper,hinge=left,open=true":  {
-                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_middle",
-                                                                                               "y":  90
+                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_middle_east"
                                                                                            },
                      "position=front,facing=east,half=upper,hinge=right,open=false":  {
                                                                                           "model":  "minecraft:block/acacia_door_top_right"
@@ -101,16 +92,13 @@
                                                                                          "y":  270
                                                                                      },
                      "position=middle_back,facing=east,half=upper,hinge=right,open=true":  {
-                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_middle",
-                                                                                               "y":  270
+                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_middle_east"
                                                                                            },
                      "position=back,facing=east,half=upper,hinge=right,open=true":  {
-                                                                                        "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_back",
-                                                                                        "y":  270
+                                                                                        "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_back_east"
                                                                                     },
                      "position=middle_front,facing=east,half=upper,hinge=right,open=true":  {
-                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_middle",
-                                                                                                "y":  270
+                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_middle_east"
                                                                                             },
                      "position=front,facing=north,half=lower,hinge=left,open=false":  {
                                                                                           "model":  "minecraft:block/acacia_door_bottom_left",
@@ -132,13 +120,13 @@
                                                                                          "model":  "minecraft:block/acacia_door_bottom_left_open"
                                                                                      },
                      "position=middle_back,facing=north,half=lower,hinge=left,open=true":  {
-                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_middle"
+                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_middle_north"
                                                                                            },
                      "position=back,facing=north,half=lower,hinge=left,open=true":  {
-                                                                                        "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_back"
+                                                                                        "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_back_north"
                                                                                     },
                      "position=middle_front,facing=north,half=lower,hinge=left,open=true":  {
-                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_middle"
+                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_middle_north"
                                                                                             },
                      "position=front,facing=north,half=lower,hinge=right,open=false":  {
                                                                                            "model":  "minecraft:block/acacia_door_bottom_right",
@@ -161,16 +149,13 @@
                                                                                           "y":  180
                                                                                       },
                      "position=middle_back,facing=north,half=lower,hinge=right,open=true":  {
-                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_middle",
-                                                                                                "y":  180
+                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_middle_north"
                                                                                             },
                      "position=back,facing=north,half=lower,hinge=right,open=true":  {
-                                                                                         "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_back",
-                                                                                         "y":  180
+                                                                                         "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_back_north"
                                                                                      },
                      "position=middle_front,facing=north,half=lower,hinge=right,open=true":  {
-                                                                                                 "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_middle",
-                                                                                                 "y":  180
+                                                                                                 "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_middle_north"
                                                                                              },
                      "position=front,facing=north,half=upper,hinge=left,open=false":  {
                                                                                           "model":  "minecraft:block/acacia_door_top_left",
@@ -192,13 +177,13 @@
                                                                                          "model":  "minecraft:block/acacia_door_top_left_open"
                                                                                      },
                      "position=middle_back,facing=north,half=upper,hinge=left,open=true":  {
-                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_middle"
+                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_middle_north"
                                                                                            },
                      "position=back,facing=north,half=upper,hinge=left,open=true":  {
-                                                                                        "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_back"
+                                                                                        "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_back_north"
                                                                                     },
                      "position=middle_front,facing=north,half=upper,hinge=left,open=true":  {
-                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_middle"
+                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_middle_north"
                                                                                             },
                      "position=front,facing=north,half=upper,hinge=right,open=false":  {
                                                                                            "model":  "minecraft:block/acacia_door_top_right",
@@ -221,16 +206,13 @@
                                                                                           "y":  180
                                                                                       },
                      "position=middle_back,facing=north,half=upper,hinge=right,open=true":  {
-                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_middle",
-                                                                                                "y":  180
+                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_middle_north"
                                                                                             },
                      "position=back,facing=north,half=upper,hinge=right,open=true":  {
-                                                                                         "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_back",
-                                                                                         "y":  180
+                                                                                         "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_back_north"
                                                                                      },
                      "position=middle_front,facing=north,half=upper,hinge=right,open=true":  {
-                                                                                                 "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_middle",
-                                                                                                 "y":  180
+                                                                                                 "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_middle_north"
                                                                                              },
                      "position=front,facing=south,half=lower,hinge=left,open=false":  {
                                                                                           "model":  "minecraft:block/acacia_door_bottom_left",
@@ -253,16 +235,13 @@
                                                                                          "y":  180
                                                                                      },
                      "position=middle_back,facing=south,half=lower,hinge=left,open=true":  {
-                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_middle",
-                                                                                               "y":  180
+                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_middle_south"
                                                                                            },
                      "position=back,facing=south,half=lower,hinge=left,open=true":  {
-                                                                                        "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_back",
-                                                                                        "y":  180
+                                                                                        "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_back_south"
                                                                                     },
                      "position=middle_front,facing=south,half=lower,hinge=left,open=true":  {
-                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_middle",
-                                                                                                "y":  180
+                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_middle_south"
                                                                                             },
                      "position=front,facing=south,half=lower,hinge=right,open=false":  {
                                                                                            "model":  "minecraft:block/acacia_door_bottom_right",
@@ -284,13 +263,13 @@
                                                                                           "model":  "minecraft:block/acacia_door_bottom_right_open"
                                                                                       },
                      "position=middle_back,facing=south,half=lower,hinge=right,open=true":  {
-                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_middle"
+                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_middle_south"
                                                                                             },
                      "position=back,facing=south,half=lower,hinge=right,open=true":  {
-                                                                                         "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_back"
+                                                                                         "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_back_south"
                                                                                      },
                      "position=middle_front,facing=south,half=lower,hinge=right,open=true":  {
-                                                                                                 "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_middle"
+                                                                                                 "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_middle_south"
                                                                                              },
                      "position=front,facing=south,half=upper,hinge=left,open=false":  {
                                                                                           "model":  "minecraft:block/acacia_door_top_left",
@@ -313,16 +292,13 @@
                                                                                          "y":  180
                                                                                      },
                      "position=middle_back,facing=south,half=upper,hinge=left,open=true":  {
-                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_middle",
-                                                                                               "y":  180
+                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_middle_south"
                                                                                            },
                      "position=back,facing=south,half=upper,hinge=left,open=true":  {
-                                                                                        "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_back",
-                                                                                        "y":  180
+                                                                                        "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_back_south"
                                                                                     },
                      "position=middle_front,facing=south,half=upper,hinge=left,open=true":  {
-                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_middle",
-                                                                                                "y":  180
+                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_middle_south"
                                                                                             },
                      "position=front,facing=south,half=upper,hinge=right,open=false":  {
                                                                                            "model":  "minecraft:block/acacia_door_top_right",
@@ -344,13 +320,13 @@
                                                                                           "model":  "minecraft:block/acacia_door_top_right_open"
                                                                                       },
                      "position=middle_back,facing=south,half=upper,hinge=right,open=true":  {
-                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_middle"
+                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_middle_south"
                                                                                             },
                      "position=back,facing=south,half=upper,hinge=right,open=true":  {
-                                                                                         "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_back"
+                                                                                         "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_back_south"
                                                                                      },
                      "position=middle_front,facing=south,half=upper,hinge=right,open=true":  {
-                                                                                                 "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_middle"
+                                                                                                 "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_middle_south"
                                                                                              },
                      "position=front,facing=west,half=lower,hinge=left,open=false":  {
                                                                                          "model":  "minecraft:block/acacia_door_bottom_left",
@@ -373,16 +349,13 @@
                                                                                         "y":  270
                                                                                     },
                      "position=middle_back,facing=west,half=lower,hinge=left,open=true":  {
-                                                                                              "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_middle",
-                                                                                              "y":  270
+                                                                                              "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_middle_west"
                                                                                           },
                      "position=back,facing=west,half=lower,hinge=left,open=true":  {
-                                                                                       "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_back",
-                                                                                       "y":  270
+                                                                                       "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_back_west"
                                                                                    },
                      "position=middle_front,facing=west,half=lower,hinge=left,open=true":  {
-                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_middle",
-                                                                                               "y":  270
+                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_bottom_left_open_middle_west"
                                                                                            },
                      "position=front,facing=west,half=lower,hinge=right,open=false":  {
                                                                                           "model":  "minecraft:block/acacia_door_bottom_right",
@@ -405,16 +378,13 @@
                                                                                          "y":  90
                                                                                      },
                      "position=middle_back,facing=west,half=lower,hinge=right,open=true":  {
-                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_middle",
-                                                                                               "y":  90
+                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_middle_west"
                                                                                            },
                      "position=back,facing=west,half=lower,hinge=right,open=true":  {
-                                                                                        "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_back",
-                                                                                        "y":  90
+                                                                                        "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_back_west"
                                                                                     },
                      "position=middle_front,facing=west,half=lower,hinge=right,open=true":  {
-                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_middle",
-                                                                                                "y":  90
+                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_bottom_right_open_middle_west"
                                                                                             },
                      "position=front,facing=west,half=upper,hinge=left,open=false":  {
                                                                                          "model":  "minecraft:block/acacia_door_top_left",
@@ -437,16 +407,13 @@
                                                                                         "y":  270
                                                                                     },
                      "position=middle_back,facing=west,half=upper,hinge=left,open=true":  {
-                                                                                              "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_middle",
-                                                                                              "y":  270
+                                                                                              "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_middle_west"
                                                                                           },
                      "position=back,facing=west,half=upper,hinge=left,open=true":  {
-                                                                                       "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_back",
-                                                                                       "y":  270
+                                                                                       "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_back_west"
                                                                                    },
                      "position=middle_front,facing=west,half=upper,hinge=left,open=true":  {
-                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_middle",
-                                                                                               "y":  270
+                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_top_left_open_middle_west"
                                                                                            },
                      "position=front,facing=west,half=upper,hinge=right,open=false":  {
                                                                                           "model":  "minecraft:block/acacia_door_top_right",
@@ -469,16 +436,13 @@
                                                                                          "y":  90
                                                                                      },
                      "position=middle_back,facing=west,half=upper,hinge=right,open=true":  {
-                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_middle",
-                                                                                               "y":  90
+                                                                                               "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_middle_west"
                                                                                            },
                      "position=back,facing=west,half=upper,hinge=right,open=true":  {
-                                                                                        "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_back",
-                                                                                        "y":  90
+                                                                                        "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_back_west"
                                                                                     },
                      "position=middle_front,facing=west,half=upper,hinge=right,open=true":  {
-                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_middle",
-                                                                                                "y":  90
+                                                                                                "model":  "acidglowscentereddoors:block/acacia_door_top_right_open_middle_west"
                                                                                             }
                  }
 }

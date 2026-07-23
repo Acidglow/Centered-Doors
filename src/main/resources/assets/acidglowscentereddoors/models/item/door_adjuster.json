@@ -1,6 +1,28 @@
 {
-  "parent": "minecraft:item/handheld",
+  "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "acidglowscentereddoors:item/door_tool"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [0, -90, -45],
+      "translation": [0, 2.5, 0],
+      "scale": [0.7, 0.7, 0.7]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [0, 90, 45],
+      "translation": [0, 2.5, 0],
+      "scale": [0.7, 0.7, 0.7]
+    },
+    "firstperson_righthand": {
+      "rotation": [0, -90, -45],
+      "translation": [1.13, 2.3, 1.13],
+      "scale": [0.62, 0.62, 0.62]
+    },
+    "firstperson_lefthand": {
+      "rotation": [0, 90, 45],
+      "translation": [1.13, 2.3, 1.13],
+      "scale": [0.62, 0.62, 0.62]
+    }
   }
 }

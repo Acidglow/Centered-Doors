@@ -1,0 +1,68 @@
+﻿{
+    "ambientocclusion":  false,
+    "textures":  {
+                     "particle":  "#bottom"
+                 },
+    "elements":  [
+                     {
+                         "from":  [
+                                      -6.5,
+                                      0,
+                                      0
+                                  ],
+                         "to":  [
+                                    9.5,
+                                    16,
+                                    3
+                                ],
+                         "faces":  {
+                                       "down":  {
+                                                    "uv":  [
+                                                               16,
+                                                               16,
+                                                               0,
+                                                               13
+                                                           ],
+                                                    "texture":  "#bottom",
+                                                    "rotation":  90
+                                                },
+                                       "north":  {
+                                                     "uv":  [
+                                                                0,
+                                                                0,
+                                                                16,
+                                                                16
+                                                            ],
+                                                     "texture":  "#bottom"
+                                                 },
+                                       "south":  {
+                                                     "uv":  [
+                                                                16,
+                                                                0,
+                                                                0,
+                                                                16
+                                                            ],
+                                                     "texture":  "#bottom"
+                                                 },
+                                       "west":  {
+                                                    "uv":  [
+                                                               3,
+                                                               0,
+                                                               0,
+                                                               16
+                                                           ],
+                                                    "texture":  "#bottom"
+                                                },
+                                       "east":  {
+                                                    "uv":  [
+                                                               3,
+                                                               0,
+                                                               0,
+                                                               16
+                                                           ],
+                                                    "texture":  "#bottom"
+                                                }
+                                   }
+                     }
+                 ]
+}

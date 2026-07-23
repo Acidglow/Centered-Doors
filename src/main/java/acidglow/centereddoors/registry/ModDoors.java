@@ -4,6 +4,8 @@ import acidglow.centereddoors.block.AdjustedDoorBlock;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -13,6 +15,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public final class ModDoors {
     private static final Map<Block, DeferredBlock<AdjustedDoorBlock>> VANILLA_TO_ADJUSTED = new LinkedHashMap<>();
+    private static final Map<Identifier, DeferredBlock<? extends AdjustedDoorBlock>> SOURCE_ID_TO_ADJUSTED = new LinkedHashMap<>();
 
     private static boolean registered;
 
@@ -37,6 +40,7 @@ public final class ModDoors {
         registerDoor(blocks, "crimson", Blocks.CRIMSON_DOOR, BlockSetType.CRIMSON);
         registerDoor(blocks, "warped", Blocks.WARPED_DOOR, BlockSetType.WARPED);
         registerDoor(blocks, "iron", Blocks.IRON_DOOR, BlockSetType.IRON);
+        MacawDoorsCompat.register(blocks);
 
         registered = true;
     }
@@ -47,11 +51,18 @@ public final class ModDoors {
         }
 
         DeferredBlock<AdjustedDoorBlock> adjustedDoor = VANILLA_TO_ADJUSTED.get(block);
-        return adjustedDoor == null ? Optional.empty() : Optional.of(adjustedDoor.get());
+        if (adjustedDoor != null) {
+            return Optional.of(adjustedDoor.get());
+        }
+
+        DeferredBlock<? extends AdjustedDoorBlock> optionalAdjustedDoor = SOURCE_ID_TO_ADJUSTED.get(BuiltInRegistries.BLOCK.getKey(block));
+        return optionalAdjustedDoor == null ? Optional.empty() : Optional.of(optionalAdjustedDoor.get());
     }
 
     public static boolean canAdjust(Block block) {
-        return block instanceof AdjustedDoorBlock || VANILLA_TO_ADJUSTED.containsKey(block);
+        return block instanceof AdjustedDoorBlock
+                || VANILLA_TO_ADJUSTED.containsKey(block)
+                || SOURCE_ID_TO_ADJUSTED.containsKey(BuiltInRegistries.BLOCK.getKey(block));
     }
 
     private static void registerDoor(DeferredRegister.Blocks blocks, String name, Block vanillaDoor, BlockSetType type) {
@@ -61,5 +72,18 @@ public final class ModDoors {
                 () -> BlockBehaviour.Properties.ofFullCopy(vanillaDoor)
         );
         VANILLA_TO_ADJUSTED.put(vanillaDoor, adjustedDoor);
+        SOURCE_ID_TO_ADJUSTED.put(BuiltInRegistries.BLOCK.getKey(vanillaDoor), adjustedDoor);
+    }
+
+    static void registerOptionalDoor(DeferredRegister.Blocks blocks, String namespace, String path, BlockSetType type) {
+        Identifier sourceId = Identifier.fromNamespaceAndPath(namespace, path);
+        DeferredBlock<? extends AdjustedDoorBlock> adjustedDoor = blocks.registerBlock(
+                "adjusted_" + namespace + "_" + path,
+                properties -> new AdjustedDoorBlock(type, sourceId, properties),
+                () -> BlockBehaviour.Properties.of()
+                        .noOcclusion()
+                        .strength(2.0F, 3.0F)
+        );
+        SOURCE_ID_TO_ADJUSTED.put(sourceId, adjustedDoor);
     }
 }

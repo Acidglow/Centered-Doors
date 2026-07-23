@@ -47,6 +47,10 @@ public enum DoorDepth implements StringRepresentable {
         };
     }
 
+    public boolean isMiddle() {
+        return this == MIDDLE_TO_BACK || this == MIDDLE_TO_FRONT;
+    }
+
     @Override
     public String getSerializedName() {
         return this.serializedName;

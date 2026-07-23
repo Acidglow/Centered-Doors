@@ -1,0 +1,8 @@
+{
+    "parent":  "acidglowscentereddoors:block/door_bottom_right_open_middle_west",
+    "textures":  {
+                     "bottom":  "minecraft:block/pale_oak_log",
+                     "top":  "minecraft:block/pale_oak_log",
+                     "particle":  "minecraft:block/pale_oak_log"
+                 }
+}
