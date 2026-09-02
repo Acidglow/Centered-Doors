@@ -1,6 +1,6 @@
 # Acidglow's Centered Doors
 
-Acidglow's Centered Doors is a NeoForge mod for Minecraft 26.2 that adds a Door Adjuster tool. The tool lets you move vanilla doors to the front, middle, or back of their block space without replacing the door visually with a different item.
+Acidglow's Centered Doors is a NeoForge mod for Minecraft 26.2 that adds a Door Adjuster tool. The tool lets you move supported doors to the front, middle, or back of their block space while preserving their original appearance and item drops.
 
 ## Features
 
@@ -10,6 +10,7 @@ Acidglow's Centered Doors is a NeoForge mod for Minecraft 26.2 that adds a Door 
 - Keep double doors opening together when they are a matching pair with opposite hinges.
 - Allow fences, walls, glass panes, and similar blocks to connect to the side of centered doors only.
 - Drop and clone the original vanilla door item from adjusted doors.
+- Support regular doors from Macaw's Doors when that mod is installed.
 
 ## Door Adjuster
 
@@ -60,18 +61,28 @@ Where:
 
 - Minecraft: 26.2
 - NeoForge: 26.2.0.0 and newer
+- Java: 25
+- Optional mod support: Macaw's Doors (`mcwdoors`)
 
 The project currently builds against NeoForge `26.2.0.32-beta`.
 
 ## Building
 
-Build the mod jar with:
+Install a Java 25 JDK, then build the mod with the included Gradle wrapper.
+
+Windows:
 
 ```powershell
 .\gradlew.bat build
 ```
 
-The jar is created in:
+Linux and macOS:
+
+```bash
+./gradlew build
+```
+
+The resulting jar is created in:
 
 ```text
 build/libs/
