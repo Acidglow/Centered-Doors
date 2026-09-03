@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -40,7 +41,9 @@ public final class ModDoors {
         registerDoor(blocks, "crimson", Blocks.CRIMSON_DOOR, BlockSetType.CRIMSON);
         registerDoor(blocks, "warped", Blocks.WARPED_DOOR, BlockSetType.WARPED);
         registerDoor(blocks, "iron", Blocks.IRON_DOOR, BlockSetType.IRON);
-        MacawDoorsCompat.register(blocks);
+        if (ModList.get().isLoaded(MacawDoorsCompat.MOD_ID)) {
+            MacawDoorsCompat.register(blocks);
+        }
 
         registered = true;
     }

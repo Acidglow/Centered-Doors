@@ -26,6 +26,8 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -95,7 +97,16 @@ public class AdjustedDoorBlock extends DoorBlock {
             return List.of();
         }
 
-        return List.of(new ItemStack(sourceDoor));
+        BlockState sourceState = sourceDoor.withPropertiesOf(state);
+        var lootTableKey = sourceDoor.getLootTable();
+        if (lootTableKey.isEmpty()) {
+            return List.of();
+        }
+
+        return params.getLevel().getServer().reloadableRegistries().getLootTable(lootTableKey.get())
+                .getRandomItems(params
+                        .withParameter(LootContextParams.BLOCK_STATE, sourceState)
+                        .create(LootContextParamSets.BLOCK));
     }
 
     @Override

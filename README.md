@@ -62,9 +62,9 @@ Where:
 - Minecraft: 26.2
 - NeoForge: 26.2.0.0 and newer
 - Java: 25
-- Optional mod support: Macaw's Doors (`mcwdoors`)
+- Optional mod support: Macaw's Doors 1.1.5 and newer (`mcwdoors`)
 
-The project currently builds against NeoForge `26.2.0.32-beta`.
+The project currently builds against NeoForge `26.2.0.32-beta` and is tested with Macaw's Doors `1.1.5` for Minecraft 26.2.
 
 ## Building
 
@@ -81,6 +81,46 @@ Linux and macOS:
 ```bash
 ./gradlew build
 ```
+
+Macaw's Doors compatibility definitions are kept in
+`tools/compatibility_doors.json`. Regenerate the registration source and validate
+all blockstates and models with the Minecraft client and Macaw's Doors JARs:
+
+```bash
+python3 tools/generate_compatibility.py \
+  --generate-java \
+  --check-assets \
+  --vanilla-assets .gradle/caches/minecraft/versions/26.2/client.jar \
+  --mcwdoors-assets run/client/mods/mcw-doors-1.1.5-mc26.2neoforge.jar
+```
+
+To regenerate the checked-in compatibility assets and remove resources for
+deleted variants, use:
+
+```bash
+python3 tools/generate_compatibility.py \
+  --generate-java \
+  --generate-assets src/main/resources/assets/acidglowscentereddoors \
+  --prune \
+  --check-assets \
+  --vanilla-assets .gradle/caches/minecraft/versions/26.2/client.jar \
+  --mcwdoors-assets run/client/mods/mcw-doors-1.1.5-mc26.2neoforge.jar
+```
+
+The asset checker resolves generated model parents and texture references
+recursively across the project resources, the vanilla client JAR, and Macaw's
+Doors JAR.
+
+To verify every supported Macaw door at runtime, place the tested Macaw's Doors
+jar in `run/gameTestServer/mods`, then run:
+
+```bash
+CENTERED_DOORS_REQUIRE_MACAW=true ./gradlew runGameTestServer
+```
+
+The environment flag makes the test fail instead of skip if Macaw's Doors was
+not loaded. The compatibility test checks all 210 supported source IDs and
+converts each door by clicking both its lower and upper half.
 
 The resulting jar is created in:
 

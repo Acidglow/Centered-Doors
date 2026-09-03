@@ -3,6 +3,7 @@ package acidglow.centereddoors;
 import acidglow.centereddoors.block.AdjustedDoorBlock;
 import acidglow.centereddoors.item.DoorAdjusterItem;
 import acidglow.centereddoors.registry.ModDoors;
+import acidglow.centereddoors.test.CenteredDoorsGameTests;
 import com.mojang.logging.LogUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -45,6 +46,7 @@ public class AcidglowsCenteredDoors {
 
     public AcidglowsCenteredDoors(IEventBus modEventBus) {
         ModDoors.register(BLOCKS);
+        modEventBus.addListener(CenteredDoorsGameTests::register);
 
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
