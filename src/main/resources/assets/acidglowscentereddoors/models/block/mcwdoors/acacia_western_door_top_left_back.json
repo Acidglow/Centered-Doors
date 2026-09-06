@@ -1,8 +1,0 @@
-{
-    "parent":  "acidglowscentereddoors:block/door_top_left_back",
-    "textures":  {
-                     "bottom":  "mcwdoors:block/western/acacia_western_door_lower",
-                     "top":  "mcwdoors:block/western/acacia_western_door_upper",
-                     "particle":  "mcwdoors:block/western/acacia_western_door_lower"
-                 }
-}

@@ -1,8 +1,8 @@
 {
-    "parent":  "acidglowscentereddoors:block/door_bottom_right_open_middle_south",
-    "textures":  {
-                     "bottom":  "mcwdoors:block/dark_oak_whispering_door_lower",
-                     "top":  "mcwdoors:block/dark_oak_whispering_door_upper",
-                     "particle":  "mcwdoors:block/dark_oak_whispering_door_lower"
-                 }
+  "parent": "acidglowscentereddoors:block/door_bottom_right_open_middle_south",
+  "textures": {
+    "bottom": "mcwdoors:block/dark_oak_whispering_door_lower",
+    "particle": "mcwdoors:block/dark_oak_whispering_door_lower",
+    "top": "mcwdoors:block/dark_oak_whispering_door_upper"
+  }
 }

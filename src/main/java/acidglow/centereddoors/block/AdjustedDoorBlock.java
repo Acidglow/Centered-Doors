@@ -146,7 +146,8 @@ public class AdjustedDoorBlock extends DoorBlock {
     }
 
     protected static VoxelShape getClosedShape(BlockState state) {
-        return SHAPES_BY_DEPTH.get(state.getValue(DEPTH)).get(state.getValue(FACING));
+        DoorDepth depth = state.getValue(DEPTH);
+        return SHAPES_BY_DEPTH.get(effectiveGeometryDepth(depth)).get(state.getValue(FACING));
     }
 
     private static Direction getDoorDirection(BlockState state) {
@@ -171,12 +172,18 @@ public class AdjustedDoorBlock extends DoorBlock {
     }
 
     private static AxisInterval getOpenLengthInterval(Direction facing, DoorDepth depth) {
-        AxisInterval closedDepth = getDepthInterval(facing, depth);
+        AxisInterval closedDepth = getDepthInterval(facing, effectiveGeometryDepth(depth));
         return switch (facing) {
             case EAST, SOUTH -> new AxisInterval(closedDepth.min(), closedDepth.min() + 16.0);
             case WEST, NORTH -> new AxisInterval(closedDepth.max() - 16.0, closedDepth.max());
             default -> throw new IllegalStateException("Door facing must be horizontal");
         };
+    }
+
+    private static DoorDepth effectiveGeometryDepth(DoorDepth depth) {
+        // BACK stores the facing as though the door had been placed from that side.
+        // Relative to that reversed facing, its physical leaf is at the front edge.
+        return depth == DoorDepth.BACK ? DoorDepth.FRONT : depth;
     }
 
     private static AxisInterval getFrontInterval(Direction direction) {

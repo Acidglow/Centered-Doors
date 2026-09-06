@@ -1,8 +1,8 @@
 {
-    "parent":  "acidglowscentereddoors:block/door_top_right_open_middle_east",
-    "textures":  {
-                     "bottom":  "mcwdoors:block/pale_oak_modern_door_lower",
-                     "top":  "mcwdoors:block/pale_oak_modern_door_upper",
-                     "particle":  "mcwdoors:block/pale_oak_modern_door_lower"
-                 }
+  "parent": "acidglowscentereddoors:block/door_top_right_open_middle_east",
+  "textures": {
+    "bottom": "mcwdoors:block/pale_oak_modern_door_lower",
+    "particle": "mcwdoors:block/pale_oak_modern_door_lower",
+    "top": "mcwdoors:block/pale_oak_modern_door_upper"
+  }
 }

@@ -26,8 +26,10 @@ import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.event.RegisterGameTestsEvent;
 import net.neoforged.fml.ModList;
 import com.mojang.serialization.MapCodec;
@@ -55,6 +57,7 @@ public final class CenteredDoorsGameTests {
                 new net.minecraft.gametest.framework.TestEnvironmentDefinition.AllOf()
         );
         register(event, environment, "cycle", CenteredDoorsGameTests::cycle, 40);
+        register(event, environment, "movement_direction", CenteredDoorsGameTests::movementDirection, 40);
         register(event, environment, "upper_half", CenteredDoorsGameTests::upperHalfConversion, 20);
         register(event, environment, "hinge", CenteredDoorsGameTests::hingeMirroring, 20);
         register(event, environment, "redstone_and_double", CenteredDoorsGameTests::redstoneAndDoubleDoor, 20);
@@ -84,12 +87,16 @@ public final class CenteredDoorsGameTests {
 
         useAdjuster(helper, lowerPos, player);
         assertState(helper, lowerPos, isAdjustedAt(helper.getBlockState(lowerPos), DoorDepth.MIDDLE_TO_BACK), "first adjustment did not move the door to the middle");
+        assertDoorOrientation(helper, lowerPos, Direction.NORTH, DoorHingeSide.LEFT);
         useAdjuster(helper, lowerPos.above(), player);
         assertState(helper, lowerPos, isAdjustedAt(helper.getBlockState(lowerPos), DoorDepth.BACK), "second adjustment did not move the door to the back");
+        assertDoorOrientation(helper, lowerPos, Direction.SOUTH, DoorHingeSide.RIGHT);
         useAdjuster(helper, lowerPos, player);
         assertState(helper, lowerPos, isAdjustedAt(helper.getBlockState(lowerPos), DoorDepth.MIDDLE_TO_FRONT), "third adjustment did not move the door to the middle");
+        assertDoorOrientation(helper, lowerPos, Direction.SOUTH, DoorHingeSide.RIGHT);
         useAdjuster(helper, lowerPos.above(), player);
         assertState(helper, lowerPos, isAdjustedAt(helper.getBlockState(lowerPos), DoorDepth.FRONT), "fourth adjustment did not return the door to the front");
+        assertDoorOrientation(helper, lowerPos, Direction.NORTH, DoorHingeSide.LEFT);
         assertState(helper, lowerPos.above(), helper.getBlockState(lowerPos.above()).getValue(DoorBlock.HALF) == DoubleBlockHalf.UPPER, "upper half was not preserved");
         helper.succeed();
     }
@@ -102,6 +109,29 @@ public final class CenteredDoorsGameTests {
         useAdjuster(helper, lowerPos.above(), player);
         assertState(helper, lowerPos, helper.getBlockState(lowerPos).getBlock() instanceof AdjustedDoorBlock, "lower half was not converted");
         assertState(helper, lowerPos.above(), helper.getBlockState(lowerPos.above()).getBlock() instanceof AdjustedDoorBlock, "upper half was not converted");
+        helper.succeed();
+    }
+
+    private static void movementDirection(GameTestHelper helper) {
+        Direction[] facings = {Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST};
+        DoorHingeSide[] hinges = {DoorHingeSide.LEFT, DoorHingeSide.RIGHT};
+        Player player = adjusterPlayer(helper);
+
+        for (int index = 0; index < facings.length * hinges.length; index++) {
+            BlockPos lowerPos = new BlockPos(1 + index * 2, 1, 1);
+            Direction facing = facings[index / hinges.length];
+            DoorHingeSide hinge = hinges[index % hinges.length];
+            placeDoor(helper, lowerPos, Blocks.OAK_DOOR.defaultBlockState(), hinge, facing);
+
+            useAdjuster(helper, lowerPos, player);
+            assertDoorOrientation(helper, lowerPos, facing, hinge);
+            useAdjuster(helper, lowerPos, player);
+            assertDoorOrientation(helper, lowerPos, facing.getOpposite(), oppositeHinge(hinge));
+            useAdjuster(helper, lowerPos, player);
+            assertDoorOrientation(helper, lowerPos, facing.getOpposite(), oppositeHinge(hinge));
+            useAdjuster(helper, lowerPos, player);
+            assertDoorOrientation(helper, lowerPos, facing, hinge);
+        }
         helper.succeed();
     }
 
@@ -144,15 +174,31 @@ public final class CenteredDoorsGameTests {
 
         for (Direction facing : Direction.Plane.HORIZONTAL) {
             for (DoorDepth depth : DoorDepth.values()) {
-                BlockState state = door.defaultBlockState()
+                BlockState closedState = door.defaultBlockState()
                         .setValue(DoorBlock.FACING, facing)
                         .setValue(DoorBlock.HALF, DoubleBlockHalf.LOWER)
                         .setValue(AdjustedDoorBlock.DEPTH, depth);
-                if (state.getShape(helper.getLevel(), helper.absolutePos(pos), CollisionContext.empty()).isEmpty()) {
-                    helper.fail("closed adjusted door has an empty collision shape");
+                assertShapeBounds(
+                        helper,
+                        closedState.getShape(helper.getLevel(), helper.absolutePos(pos), CollisionContext.empty()),
+                        expectedClosedBounds(facing, depth),
+                        "closed " + facing + " " + depth
+                );
+
+                for (DoorHingeSide hinge : DoorHingeSide.values()) {
+                    BlockState openState = closedState
+                            .setValue(DoorBlock.OPEN, true)
+                            .setValue(DoorBlock.HINGE, hinge);
+                    assertShapeBounds(
+                            helper,
+                            openState.getShape(helper.getLevel(), helper.absolutePos(pos), CollisionContext.empty()),
+                            expectedOpenBounds(facing, hinge, depth),
+                            "open " + facing + " " + hinge + " " + depth
+                    );
                 }
+
                 if (depth.isMiddle()) {
-                    if (state.getBlockSupportShape(helper.getLevel(), helper.absolutePos(pos)).isEmpty()) {
+                    if (closedState.getBlockSupportShape(helper.getLevel(), helper.absolutePos(pos)).isEmpty()) {
                         helper.fail("middle adjusted door has no support shape");
                     }
                 }
@@ -312,14 +358,24 @@ public final class CenteredDoorsGameTests {
     }
 
     private static void placeDoor(GameTestHelper helper, BlockPos lowerPos, BlockState sourceState, DoorHingeSide hinge) {
+        placeDoor(helper, lowerPos, sourceState, hinge, Direction.NORTH);
+    }
+
+    private static void placeDoor(
+            GameTestHelper helper,
+            BlockPos lowerPos,
+            BlockState sourceState,
+            DoorHingeSide hinge,
+            Direction facing
+    ) {
         helper.setBlock(lowerPos, sourceState
                 .setValue(DoorBlock.HALF, DoubleBlockHalf.LOWER)
                 .setValue(DoorBlock.HINGE, hinge)
-                .setValue(DoorBlock.FACING, Direction.NORTH));
+                .setValue(DoorBlock.FACING, facing));
         helper.setBlock(lowerPos.above(), sourceState
                 .setValue(DoorBlock.HALF, DoubleBlockHalf.UPPER)
                 .setValue(DoorBlock.HINGE, hinge)
-                .setValue(DoorBlock.FACING, Direction.NORTH));
+                .setValue(DoorBlock.FACING, facing));
     }
 
     private static void placeAdjustedDoor(GameTestHelper helper, BlockPos lowerPos, DoorDepth depth, DoorHingeSide hinge, boolean open) {
@@ -359,6 +415,77 @@ public final class CenteredDoorsGameTests {
 
     private static boolean isAdjustedAt(BlockState state, DoorDepth depth) {
         return state.getBlock() instanceof AdjustedDoorBlock && state.getValue(AdjustedDoorBlock.DEPTH) == depth;
+    }
+
+    private static void assertDoorOrientation(GameTestHelper helper, BlockPos lowerPos, Direction facing, DoorHingeSide hinge) {
+        helper.assertBlockProperty(lowerPos, DoorBlock.FACING, facing);
+        helper.assertBlockProperty(lowerPos.above(), DoorBlock.FACING, facing);
+        helper.assertBlockProperty(lowerPos, DoorBlock.HINGE, hinge);
+        helper.assertBlockProperty(lowerPos.above(), DoorBlock.HINGE, hinge);
+    }
+
+    private static DoorHingeSide oppositeHinge(DoorHingeSide hinge) {
+        return hinge == DoorHingeSide.LEFT ? DoorHingeSide.RIGHT : DoorHingeSide.LEFT;
+    }
+
+    private static AABB expectedClosedBounds(Direction facing, DoorDepth depth) {
+        if (depth == DoorDepth.BACK) {
+            depth = DoorDepth.FRONT;
+        }
+        double min = depth.minZ() / 16.0;
+        double max = depth.maxZ() / 16.0;
+        return switch (facing) {
+            case NORTH -> new AABB(0.0, 0.0, min, 1.0, 1.0, max);
+            case SOUTH -> new AABB(0.0, 0.0, 1.0 - max, 1.0, 1.0, 1.0 - min);
+            case WEST -> new AABB(min, 0.0, 0.0, max, 1.0, 1.0);
+            case EAST -> new AABB(1.0 - max, 0.0, 0.0, 1.0 - min, 1.0, 1.0);
+            default -> throw new IllegalStateException("Door facing must be horizontal");
+        };
+    }
+
+    private static AABB expectedOpenBounds(Direction facing, DoorHingeSide hinge, DoorDepth depth) {
+        AABB closed = expectedClosedBounds(facing, depth);
+        double closedMin = facing.getAxis() == Direction.Axis.X ? closed.minX : closed.minZ;
+        double closedMax = facing.getAxis() == Direction.Axis.X ? closed.maxX : closed.maxZ;
+        double lengthMin = switch (facing) {
+            case EAST, SOUTH -> closedMin;
+            case WEST, NORTH -> closedMax - 1.0;
+            default -> throw new IllegalStateException("Door facing must be horizontal");
+        };
+        double lengthMax = lengthMin + 1.0;
+
+        Direction openDirection = hinge == DoorHingeSide.RIGHT
+                ? facing.getCounterClockWise()
+                : facing.getClockWise();
+        AABB front = expectedClosedBounds(openDirection, DoorDepth.FRONT);
+        double thicknessMin = facing.getAxis() == Direction.Axis.X ? front.minZ : front.minX;
+        double thicknessMax = facing.getAxis() == Direction.Axis.X ? front.maxZ : front.maxX;
+
+        return facing.getAxis() == Direction.Axis.X
+                ? new AABB(lengthMin, 0.0, thicknessMin, lengthMax, 1.0, thicknessMax)
+                : new AABB(thicknessMin, 0.0, lengthMin, thicknessMax, 1.0, lengthMax);
+    }
+
+    private static void assertShapeBounds(
+            GameTestHelper helper,
+            VoxelShape shape,
+            AABB expected,
+            String description
+    ) {
+        if (shape.isEmpty()) {
+            helper.fail(description + " adjusted door has an empty collision shape");
+        }
+
+        AABB actual = shape.bounds();
+        double epsilon = 1.0E-9;
+        if (Math.abs(actual.minX - expected.minX) > epsilon
+                || Math.abs(actual.minY - expected.minY) > epsilon
+                || Math.abs(actual.minZ - expected.minZ) > epsilon
+                || Math.abs(actual.maxX - expected.maxX) > epsilon
+                || Math.abs(actual.maxY - expected.maxY) > epsilon
+                || Math.abs(actual.maxZ - expected.maxZ) > epsilon) {
+            helper.fail(description + " collision bounds were " + actual + ", expected " + expected);
+        }
     }
 
     private static void assertState(GameTestHelper helper, BlockPos pos, boolean condition, String message) {

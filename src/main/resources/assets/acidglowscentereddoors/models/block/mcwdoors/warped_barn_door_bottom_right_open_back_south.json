@@ -1,8 +1,0 @@
-{
-    "parent":  "acidglowscentereddoors:block/door_bottom_right_open_back_south",
-    "textures":  {
-                     "bottom":  "mcwdoors:block/warped_barn_door_lower",
-                     "top":  "mcwdoors:block/warped_barn_door_upper",
-                     "particle":  "mcwdoors:block/warped_barn_door_lower"
-                 }
-}

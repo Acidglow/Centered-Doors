@@ -1,8 +1,0 @@
-{
-    "parent":  "acidglowscentereddoors:block/door_top_left_open_back_south",
-    "textures":  {
-                     "bottom":  "minecraft:block/jungle_log",
-                     "top":  "minecraft:block/jungle_log",
-                     "particle":  "minecraft:block/jungle_log"
-                 }
-}

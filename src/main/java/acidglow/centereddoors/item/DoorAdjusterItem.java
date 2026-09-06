@@ -5,6 +5,7 @@ import acidglow.centereddoors.block.DoorDepth;
 import acidglow.centereddoors.registry.ModDoors;
 import java.util.Optional;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.TriState;
 import net.minecraft.world.InteractionHand;
@@ -80,8 +81,15 @@ public class DoorAdjusterItem extends Item {
     }
 
     private static DoorDepth moveDoor(Level level, DoorTarget target) {
-        DoorDepth nextDepth = target.currentDepth().next();
-        setAdjustedDoor(level, target, target.lowerState(), target.upperState(), nextDepth);
+        DoorDepth currentDepth = target.currentDepth();
+        DoorDepth nextDepth = currentDepth.next();
+        Direction facing = target.lowerState().getValue(DoorBlock.FACING);
+        DoorHingeSide hinge = target.lowerState().getValue(DoorBlock.HINGE);
+        if (nextDepth == DoorDepth.BACK || nextDepth == DoorDepth.FRONT) {
+            facing = facing.getOpposite();
+            hinge = hinge == DoorHingeSide.LEFT ? DoorHingeSide.RIGHT : DoorHingeSide.LEFT;
+        }
+        setAdjustedDoor(level, target, target.lowerState(), target.upperState(), nextDepth, facing, hinge);
         return nextDepth;
     }
 
@@ -96,13 +104,25 @@ public class DoorAdjusterItem extends Item {
         level.setBlock(target.lowerPos().above(), upperState, UPDATE_FLAGS);
     }
 
-    private static void setAdjustedDoor(Level level, DoorTarget target, BlockState lowerSource, BlockState upperSource, DoorDepth depth) {
+    private static void setAdjustedDoor(
+            Level level,
+            DoorTarget target,
+            BlockState lowerSource,
+            BlockState upperSource,
+            DoorDepth depth,
+            Direction facing,
+            DoorHingeSide hinge
+    ) {
         AdjustedDoorBlock adjustedDoor = target.adjustedDoor();
         BlockState lowerState = adjustedDoor.withPropertiesOf(lowerSource)
                 .setValue(DoorBlock.HALF, DoubleBlockHalf.LOWER)
+                .setValue(DoorBlock.FACING, facing)
+                .setValue(DoorBlock.HINGE, hinge)
                 .setValue(AdjustedDoorBlock.DEPTH, depth);
         BlockState upperState = adjustedDoor.withPropertiesOf(upperSource)
                 .setValue(DoorBlock.HALF, DoubleBlockHalf.UPPER)
+                .setValue(DoorBlock.FACING, facing)
+                .setValue(DoorBlock.HINGE, hinge)
                 .setValue(AdjustedDoorBlock.DEPTH, depth);
 
         level.setBlock(target.lowerPos(), lowerState, UPDATE_FLAGS);

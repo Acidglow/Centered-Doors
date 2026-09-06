@@ -1,8 +1,0 @@
-{
-    "parent":  "acidglowscentereddoors:block/door_top_left_open_back_south",
-    "textures":  {
-                     "bottom":  "mcwdoors:block/pale_oak_paper_door_lower",
-                     "top":  "mcwdoors:block/pale_oak_paper_door_upper",
-                     "particle":  "mcwdoors:block/pale_oak_paper_door_lower"
-                 }
-}

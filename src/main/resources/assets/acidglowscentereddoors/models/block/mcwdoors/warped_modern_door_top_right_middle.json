@@ -1,8 +1,8 @@
 {
-    "parent":  "acidglowscentereddoors:block/door_top_right_middle",
-    "textures":  {
-                     "bottom":  "mcwdoors:block/warped_modern_door_lower",
-                     "top":  "mcwdoors:block/warped_modern_door_upper",
-                     "particle":  "mcwdoors:block/warped_modern_door_lower"
-                 }
+  "parent": "acidglowscentereddoors:block/door_top_right_middle",
+  "textures": {
+    "bottom": "mcwdoors:block/warped_modern_door_lower",
+    "particle": "mcwdoors:block/warped_modern_door_lower",
+    "top": "mcwdoors:block/warped_modern_door_upper"
+  }
 }

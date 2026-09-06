@@ -155,12 +155,12 @@ def generate_assets(definitions, output_root):
         f"{half}_{hinge}_{position}"
         for half in ("bottom", "top")
         for hinge in ("left", "right")
-        for position in ("back", "middle")
+        for position in ("middle",)
     ] + [
         f"{half}_{hinge}_open_{position}_{facing}"
         for half in ("bottom", "top")
         for hinge in ("left", "right")
-        for position in ("back", "middle")
+        for position in ("middle",)
         for facing in ("east", "north", "south", "west")
     ]
     for variant, _, definition in definitions:
@@ -171,16 +171,30 @@ def generate_assets(definitions, output_root):
                     for hinge in ("left", "right"):
                         for open_state in ("false", "true"):
                             key = f"position={position},facing={facing},half={half},hinge={hinge},open={open_state}"
-                            if position == "front":
+                            if position in ("front", "back"):
                                 value = definition["front_models"][f"{facing},{half},{hinge},{open_state}"]
                             else:
-                                model_position = "middle" if position != "back" else "back"
+                                model_position = "middle"
                                 model_half = "bottom" if half == "lower" else "top"
-                                suffix = f"{model_half}_{hinge}"
-                                suffix += f"_open_{model_position}_{facing}" if open_state == "true" else f"_{model_position}"
+                                render_facing = facing
+                                render_hinge = hinge
+                                if position == "middle_front" and open_state == "false":
+                                    render_facing = {
+                                        "east": "west",
+                                        "north": "south",
+                                        "south": "north",
+                                        "west": "east",
+                                    }[facing]
+                                    render_hinge = "right" if hinge == "left" else "left"
+                                suffix = f"{model_half}_{render_hinge}"
+                                suffix += (
+                                    f"_open_{model_position}_{facing}"
+                                    if open_state == "true"
+                                    else f"_{model_position}"
+                                )
                                 value = {"model": f"acidglowscentereddoors:block/mcwdoors/{variant}_{suffix}"}
                                 if open_state == "false":
-                                    rotation = {"north": 270, "south": 90, "west": 180}.get(facing)
+                                    rotation = {"north": 270, "south": 90, "west": 180}.get(render_facing)
                                     if rotation is not None:
                                         value["y"] = rotation
                             blockstate["variants"][key] = value
@@ -203,9 +217,15 @@ def prune_assets(definitions):
         variant = path.stem.removeprefix("adjusted_mcwdoors_")
         if variant not in variants:
             path.unlink()
+    referenced_models = set()
+    for path in BLOCKSTATES.glob("adjusted_mcwdoors_*.json"):
+        for value in read_json(path).get("variants", {}).values():
+            model = value.get("model", "")
+            prefix = f"{LOCAL_NAMESPACE}:block/mcwdoors/"
+            if model.startswith(prefix):
+                referenced_models.add(model.removeprefix(prefix) + ".json")
     for path in (MODELS / "mcwdoors").glob("*.json"):
-        variant = path.stem.split("_", 1)[0]
-        if not any(path.stem.startswith(f"{candidate}_") for candidate in variants):
+        if path.name not in referenced_models:
             path.unlink()
 
 

@@ -1,8 +1,0 @@
-{
-    "parent":  "acidglowscentereddoors:block/door_top_right_open_back_west",
-    "textures":  {
-                     "bottom":  "mcwdoors:block/birch_cottage_door_lower",
-                     "top":  "mcwdoors:block/birch_cottage_door_upper",
-                     "particle":  "mcwdoors:block/birch_cottage_door_lower"
-                 }
-}

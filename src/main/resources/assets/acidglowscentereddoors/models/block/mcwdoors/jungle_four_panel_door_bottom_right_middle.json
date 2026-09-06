@@ -1,8 +1,8 @@
 {
-    "parent":  "acidglowscentereddoors:block/door_bottom_right_middle",
-    "textures":  {
-                     "bottom":  "mcwdoors:block/jungle_four_panel_door_lower",
-                     "top":  "mcwdoors:block/jungle_four_panel_door_upper",
-                     "particle":  "mcwdoors:block/jungle_four_panel_door_lower"
-                 }
+  "parent": "acidglowscentereddoors:block/door_bottom_right_middle",
+  "textures": {
+    "bottom": "mcwdoors:block/jungle_four_panel_door_lower",
+    "particle": "mcwdoors:block/jungle_four_panel_door_lower",
+    "top": "mcwdoors:block/jungle_four_panel_door_upper"
+  }
 }

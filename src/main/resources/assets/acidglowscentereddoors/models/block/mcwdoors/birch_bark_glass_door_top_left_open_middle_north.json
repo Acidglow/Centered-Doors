@@ -1,8 +1,8 @@
 {
-    "parent":  "acidglowscentereddoors:block/door_top_left_open_middle_north",
-    "textures":  {
-                     "bottom":  "minecraft:block/birch_log",
-                     "top":  "minecraft:block/birch_log",
-                     "particle":  "minecraft:block/birch_log"
-                 }
+  "parent": "acidglowscentereddoors:block/door_top_left_open_middle_north",
+  "textures": {
+    "bottom": "minecraft:block/birch_log",
+    "particle": "minecraft:block/birch_log",
+    "top": "minecraft:block/birch_log"
+  }
 }

@@ -1,7 +1,8 @@
 ﻿{
     "ambientocclusion":  false,
     "textures":  {
-                     "particle":  "#bottom"
+                     "particle":  "#bottom",
+                     "bottom_edge":  "#bottom"
                  },
     "elements":  [
                      {
@@ -23,7 +24,7 @@
                                                                0,
                                                                13
                                                            ],
-                                                    "texture":  "#bottom",
+                                                    "texture":  "#bottom_edge",
                                                     "rotation":  90
                                                 },
                                        "north":  {
@@ -51,7 +52,7 @@
                                                                0,
                                                                16
                                                            ],
-                                                    "texture":  "#bottom"
+                                                    "texture":  "#bottom_edge"
                                                 },
                                        "east":  {
                                                     "uv":  [
@@ -60,7 +61,7 @@
                                                                0,
                                                                16
                                                            ],
-                                                    "texture":  "#bottom"
+                                                    "texture":  "#bottom_edge"
                                                 }
                                    }
                      }

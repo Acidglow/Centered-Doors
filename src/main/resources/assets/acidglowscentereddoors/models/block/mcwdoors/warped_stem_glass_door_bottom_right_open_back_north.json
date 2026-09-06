@@ -1,8 +1,0 @@
-{
-    "parent":  "acidglowscentereddoors:block/door_bottom_right_open_back_north",
-    "textures":  {
-                     "bottom":  "minecraft:block/warped_stem",
-                     "top":  "minecraft:block/warped_stem",
-                     "particle":  "minecraft:block/warped_stem"
-                 }
-}

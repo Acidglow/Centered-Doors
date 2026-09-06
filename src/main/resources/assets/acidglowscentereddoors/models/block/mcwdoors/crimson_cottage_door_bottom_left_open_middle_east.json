@@ -1,8 +1,8 @@
 {
-    "parent":  "acidglowscentereddoors:block/door_bottom_left_open_middle_east",
-    "textures":  {
-                     "bottom":  "mcwdoors:block/crimson_cottage_door_lower",
-                     "top":  "mcwdoors:block/crimson_cottage_door_upper",
-                     "particle":  "mcwdoors:block/crimson_cottage_door_lower"
-                 }
+  "parent": "acidglowscentereddoors:block/door_bottom_left_open_middle_east",
+  "textures": {
+    "bottom": "mcwdoors:block/crimson_cottage_door_lower",
+    "particle": "mcwdoors:block/crimson_cottage_door_lower",
+    "top": "mcwdoors:block/crimson_cottage_door_upper"
+  }
 }
