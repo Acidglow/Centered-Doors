@@ -9,7 +9,7 @@ Acidglow's Centered Doors is a NeoForge mod for Minecraft 26.2 that adds a Door 
 - Open centered and back-positioned doors from the hinge side.
 - Keep double doors opening together when they are a matching pair with opposite hinges.
 - Allow fences, walls, glass panes, and similar blocks to connect to the side of centered doors only.
-- Drop and clone the original vanilla door item from adjusted doors.
+- Drop and clone the original source-door item from adjusted doors.
 - Support regular doors from Macaw's Doors when that mod is installed.
 
 ## Door Adjuster
@@ -107,9 +107,9 @@ python3 tools/generate_compatibility.py \
   --mcwdoors-assets run/client/mods/mcw-doors-1.1.5-mc26.2neoforge.jar
 ```
 
-The asset checker resolves generated model parents and texture references
-recursively across the project resources, the vanilla client JAR, and Macaw's
-Doors JAR.
+The asset checker verifies that every local model is reachable, then resolves
+generated model parents and texture references recursively across the project
+resources, the vanilla client JAR, and Macaw's Doors JAR.
 
 To verify every supported Macaw door at runtime, place the tested Macaw's Doors
 jar in `run/gameTestServer/mods`, then run:
@@ -130,4 +130,4 @@ build/libs/
 
 ## License
 
-All Rights Reserved.
+MIT. See [LICENSE](LICENSE).

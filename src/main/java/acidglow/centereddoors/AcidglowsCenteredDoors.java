@@ -1,10 +1,8 @@
 package acidglow.centereddoors;
 
-import acidglow.centereddoors.block.AdjustedDoorBlock;
 import acidglow.centereddoors.item.DoorAdjusterItem;
 import acidglow.centereddoors.registry.ModDoors;
 import acidglow.centereddoors.test.CenteredDoorsGameTests;
-import com.mojang.logging.LogUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -15,12 +13,10 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import org.slf4j.Logger;
 
 @Mod(AcidglowsCenteredDoors.MODID)
 public class AcidglowsCenteredDoors {
     public static final String MODID = "acidglowscentereddoors";
-    public static final Logger LOGGER = LogUtils.getLogger();
 
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
@@ -60,9 +56,5 @@ public class AcidglowsCenteredDoors {
         if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(DOOR_ADJUSTER);
         }
-    }
-
-    public static boolean isAdjustedDoor(net.minecraft.world.level.block.Block block) {
-        return block instanceof AdjustedDoorBlock;
     }
 }

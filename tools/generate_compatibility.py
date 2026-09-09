@@ -113,7 +113,8 @@ def iter_named_strings(value, key_name):
 def validate_json_and_local_references():
     json_files = sorted(RESOURCES.rglob("*.json"))
     parsed = {path: read_json(path) for path in json_files}
-    checked_models = set()
+    local_models = set(ALL_MODELS.rglob("*.json"))
+    root_models = set()
     checked_textures = set()
 
     for path, data in parsed.items():
@@ -122,7 +123,8 @@ def validate_json_and_local_references():
             if target is not None:
                 if not target.is_file():
                     raise SystemExit(f"{path}: missing local model {target}")
-                checked_models.add(target)
+                if not path.is_relative_to(ALL_MODELS):
+                    root_models.add(target)
 
         if path.is_relative_to(ALL_MODELS):
             parent = data.get("parent") if isinstance(data, dict) else None
@@ -130,7 +132,6 @@ def validate_json_and_local_references():
             if target is not None:
                 if not target.is_file():
                     raise SystemExit(f"{path}: missing local parent model {target}")
-                checked_models.add(target)
 
             textures = data.get("textures", {}) if isinstance(data, dict) else {}
             if not isinstance(textures, dict):
@@ -142,7 +143,28 @@ def validate_json_and_local_references():
                         raise SystemExit(f"{path}: missing local texture {target}")
                     checked_textures.add(target)
 
-    return len(json_files), len(checked_models), len(checked_textures)
+    reachable_models = set()
+    pending_models = list(root_models)
+    while pending_models:
+        model_path = pending_models.pop()
+        if model_path in reachable_models:
+            continue
+        reachable_models.add(model_path)
+        model = parsed[model_path]
+        for reference in iter_named_strings(model, "model"):
+            target = local_reference_path(reference, ALL_MODELS, ".json")
+            if target is not None:
+                pending_models.append(target)
+        parent = model.get("parent") if isinstance(model, dict) else None
+        target = local_reference_path(parent, ALL_MODELS, ".json")
+        if target is not None:
+            pending_models.append(target)
+
+    unreferenced_models = sorted(local_models - reachable_models)
+    if unreferenced_models:
+        raise SystemExit(f"unreferenced local models: {unreferenced_models[:10]}")
+
+    return len(json_files), len(reachable_models), len(checked_textures)
 
 
 def generate_assets(definitions, output_root):
@@ -342,7 +364,7 @@ def validate_assets(definitions, sources):
     print(
         f"Validated {len(definitions)} definitions, {len(expected_blockstates)} blockstates, "
         f"{len(referenced_models)} adjusted models, {json_count} JSON resources, "
-        f"{local_model_count} local model references, and {local_texture_count} local texture references "
+        f"{local_model_count} reachable local models, and {local_texture_count} local texture references "
         f"plus external model and texture targets."
     )
 
